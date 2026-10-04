@@ -1,0 +1,1313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>APEXEXPRESS | Consignment Status - Package On Its Way</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: #0c0d0e;
+      color: #ffffff;
+    }
+    .font-mono-data {
+      font-family: 'JetBrains Mono', monospace;
+      font-variant-numeric: tabular-nums;
+    }
+    .orange-gradient {
+      background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+    }
+    .glass-card {
+      background-color: #141618;
+      border: 1px solid #23272b;
+    }
+    @media print {
+      body { background-color: #ffffff; color: #000000; }
+      header, footer, .no-print { display: none !important; }
+      .glass-card { border: 1px solid #cccccc; background: #ffffff !important; color: #000000 !important; }
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-orange-500 selection:text-white">
+
+  <!-- Top Bar Contract -->
+  <header class="w-full bg-[#111214] border-b border-[#23272b] sticky top-0 z-50 no-print">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between">
+      <a href="track.html" class="flex items-center gap-3 group">
+        <div class="w-9 h-9 orange-gradient rounded-sm flex items-center justify-center font-black text-black text-lg tracking-tighter">
+          ▲
+        </div>
+        <div class="flex flex-col">
+          <span class="text-lg font-extrabold tracking-tight text-white uppercase group-hover:text-orange-400 transition-colors">
+            APEX<span class="text-orange-500">EXPRESS</span>
+          </span>
+          <span class="text-[10px] tracking-widest text-zinc-400 uppercase -mt-1 font-mono-data">GLOBAL COURIER & FREIGHT</span>
+        </div>
+      </a>
+
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-zinc-300">
+        <a href="track.html" class="hover:text-orange-400 transition-colors">&larr; Track Consignment</a>
+        <a href="result.html?code=DELI01474" class="text-orange-400 font-semibold transition-colors">Transit Monitor</a>
+        <a href="/#dispatcher" class="hover:text-white transition-colors">Dispatcher Panel</a>
+      </nav>
+
+      <!-- Zone 3: Primary Action - LOGOUT -->
+      <div class="flex items-center gap-3">
+        <button onclick="window.print()" class="px-3 py-1.5 bg-[#1b1e22] hover:bg-[#252a2f] text-zinc-200 border border-[#2e3338] text-xs font-semibold rounded-sm transition-colors flex items-center gap-2">
+          <svg class="w-4 h-4 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+          Print Waybill
+        </button>
+        <a href="track.html" class="px-3.5 py-1.5 bg-orange-500 hover:bg-orange-400 text-black text-xs font-bold uppercase tracking-wider rounded-sm transition-colors flex items-center gap-2 shadow-md shadow-orange-500/20">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
+          <span>LOGOUT</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Viewport -->
+  <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+    <!-- Breadcrumb & Top Bar -->
+    <div class="flex flex-wrap items-center justify-between gap-4 mb-6 text-xs text-zinc-400 no-print">
+      <div class="flex items-center gap-2">
+        <a href="track.html" class="hover:text-white">Apex Hub</a>
+        <span>/</span>
+        <span>Tracking Manifest</span>
+        <span>/</span>
+        <span class="text-white font-mono-data font-semibold" id="top-code-breadcrumb">DELI01474</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <span class="inline-block w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+        <span class="font-mono-data text-zinc-300">Global Carrier Mesh: Synchronized</span>
+      </div>
+    </div>
+
+    <!-- Master Status Header Banner -->
+    <section class="glass-card rounded-sm p-6 sm:p-8 mb-8 border-l-4 border-l-orange-500 relative overflow-hidden">
+      <!-- Background watermark accent -->
+      <div class="absolute -right-10 -bottom-10 opacity-5 pointer-events-none text-9xl font-black text-orange-500 font-mono-data select-none">
+        DELI
+      </div>
+
+      <div class="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+        <div>
+          <!-- Unboxed metadata with typographic separators -->
+          <div class="flex items-center gap-3 text-xs text-zinc-400 mb-2 font-mono-data">
+            <span class="text-orange-400 font-bold tracking-wider">AIR WAYBILL # <span id="display-tracking-code">DELI01474</span></span>
+            <span aria-hidden="true">&middot;</span>
+            <span>Apex Priority Air Express</span>
+            <span aria-hidden="true">&middot;</span>
+            <span>Flight APX-9481</span>
+          </div>
+
+          <!-- Primary Result Headline -->
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight uppercase flex items-center gap-3">
+            <span>Package is on its way</span>
+            <span class="inline-flex items-center justify-center px-3 py-1 bg-orange-500 text-black text-xs font-black rounded-sm uppercase tracking-wider">
+              IN TRANSIT
+            </span>
+          </h1>
+
+          <p class="mt-3 text-sm sm:text-base text-zinc-300 max-w-2xl leading-relaxed" id="status-detail-text">
+            Your parcel is traveling via international air freight aboard flight APX-9481 from Frankfurt Hub to Cairo Delivery Gateway. Customs pre-clearance completed with zero flags.
+          </p>
+        </div>
+
+        <!-- Estimated Delivery Metric Card -->
+        <div class="bg-[#0b0c0e] border border-[#2b3036] p-5 rounded-sm lg:min-w-[280px] shrink-0">
+          <div class="text-[11px] uppercase tracking-wider text-zinc-400 font-semibold">Estimated Arrival</div>
+          <div class="text-2xl font-black text-white mt-1 font-mono-data text-orange-400" id="estimated-date">
+            Sept 26, 2026
+          </div>
+          <div class="text-xs text-zinc-400 mt-0.5 font-mono-data" id="estimated-time">
+            Target Window: 14:00 &ndash; 18:30 EEST
+          </div>
+          <div class="mt-3 pt-3 border-t border-[#23272b] flex items-center justify-between text-[11px] font-mono-data text-zinc-400">
+            <span>Route Transit:</span>
+            <span class="text-emerald-400 font-bold">On Schedule</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Multi-Stage Progress Stepper with Smooth Transitions -->
+      <div class="mt-8 pt-6 border-t border-[#23272b]">
+        <!-- Stepper Live Header -->
+        <div class="flex flex-wrap items-center justify-between gap-2 mb-6">
+          <span class="text-xs font-mono-data font-bold uppercase tracking-wider text-zinc-400 flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-orange-500 animate-pulse"></span>
+            Transit Stage Progression Monitor
+          </span>
+          <div class="text-xs font-mono-data text-zinc-400 flex items-center gap-2">
+            <span class="text-zinc-500">Live Status:</span>
+            <span id="stepper-status-badge" class="px-2 py-0.5 rounded text-[11px] font-bold uppercase bg-orange-500/20 text-orange-400 border border-orange-500/40 transition-colors duration-500">
+              IN TRANSIT
+            </span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-5 gap-4 relative" id="progress-stepper-container">
+          <!-- Stage 1 -->
+          <div class="flex flex-col items-center text-center group" id="stage-node-0">
+            <div class="relative flex items-center justify-center w-full mb-3">
+              <div class="hidden sm:block absolute top-1/2 left-1/2 w-full h-1.5 bg-[#202327] -translate-y-1/2 z-0 rounded-full overflow-hidden border border-[#2b3036]/60">
+                <div id="step-bar-0" class="h-full bg-gradient-to-r from-orange-500 via-amber-400 to-orange-400 transition-all duration-700 ease-in-out rounded-full" style="width: 100%;"></div>
+              </div>
+              <div id="step-icon-0" class="relative z-10 w-11 h-11 rounded-full bg-orange-500 text-black shadow-lg shadow-orange-500/35 scale-100 ring-2 ring-orange-400/50 flex items-center justify-center font-black text-sm transition-all duration-700 ease-in-out transform">
+                ✓
+              </div>
+            </div>
+            <span id="step-title-0" class="text-xs font-bold text-white transition-colors duration-500">Picked Up</span>
+            <span class="text-[11px] text-zinc-400 font-mono-data mt-0.5">Sept 21, 14:15</span>
+          </div>
+
+          <!-- Stage 2 -->
+          <div class="flex flex-col items-center text-center group" id="stage-node-1">
+            <div class="relative flex items-center justify-center w-full mb-3">
+              <div class="hidden sm:block absolute top-1/2 left-1/2 w-full h-1.5 bg-[#202327] -translate-y-1/2 z-0 rounded-full overflow-hidden border border-[#2b3036]/60">
+                <div id="step-bar-1" class="h-full bg-gradient-to-r from-orange-500 via-amber-400 to-orange-400 transition-all duration-700 ease-in-out rounded-full" style="width: 100%;"></div>
+              </div>
+              <div id="step-icon-1" class="relative z-10 w-11 h-11 rounded-full bg-orange-500 text-black shadow-lg shadow-orange-500/35 scale-100 ring-2 ring-orange-400/50 flex items-center justify-center font-black text-sm transition-all duration-700 ease-in-out transform">
+                ✓
+              </div>
+            </div>
+            <span id="step-title-1" class="text-xs font-bold text-white transition-colors duration-500">Export Customs</span>
+            <span class="text-[11px] text-zinc-400 font-mono-data mt-0.5">Cleared FRA</span>
+          </div>
+
+          <!-- Stage 3 (Active) -->
+          <div class="flex flex-col items-center text-center group" id="stage-node-2">
+            <div class="relative flex items-center justify-center w-full mb-3">
+              <div class="hidden sm:block absolute top-1/2 left-1/2 w-full h-1.5 bg-[#202327] -translate-y-1/2 z-0 rounded-full overflow-hidden border border-[#2b3036]/60">
+                <div id="step-bar-2" class="h-full bg-gradient-to-r from-orange-500 via-amber-400 to-orange-400 transition-all duration-700 ease-in-out rounded-full" style="width: 50%;"></div>
+              </div>
+              <div id="step-icon-2" class="relative z-10 w-11 h-11 rounded-full bg-orange-500 text-black ring-4 ring-orange-500/50 shadow-xl shadow-orange-500/40 scale-110 flex items-center justify-center font-black text-sm transition-all duration-700 ease-in-out transform">
+                ✈
+              </div>
+            </div>
+            <span id="step-title-2" class="text-xs font-black text-orange-400 transition-colors duration-500">In Air Transit</span>
+            <span id="step-time-2" class="text-[11px] text-orange-300 font-mono-data mt-0.5">Flight APX-9481</span>
+          </div>
+
+          <!-- Stage 4 -->
+          <div class="flex flex-col items-center text-center group" id="stage-node-3">
+            <div class="relative flex items-center justify-center w-full mb-3">
+              <div class="hidden sm:block absolute top-1/2 left-1/2 w-full h-1.5 bg-[#202327] -translate-y-1/2 z-0 rounded-full overflow-hidden border border-[#2b3036]/60">
+                <div id="step-bar-3" class="h-full bg-gradient-to-r from-orange-500 via-amber-400 to-orange-400 transition-all duration-700 ease-in-out rounded-full" style="width: 0%;"></div>
+              </div>
+              <div id="step-icon-3" class="relative z-10 w-11 h-11 rounded-full bg-[#16181b] text-zinc-500 border-2 border-[#2b3036] scale-95 flex items-center justify-center font-black text-sm transition-all duration-700 ease-in-out transform">
+                🚚
+              </div>
+            </div>
+            <span id="step-title-3" class="text-xs font-medium text-zinc-500 transition-colors duration-500">Import Clearance</span>
+            <span id="step-time-3" class="text-[11px] text-zinc-500 font-mono-data mt-0.5">Pending Landing</span>
+          </div>
+
+          <!-- Stage 5 -->
+          <div class="flex flex-col items-center text-center group" id="stage-node-4">
+            <div class="relative flex items-center justify-center w-full mb-3">
+              <div id="step-icon-4" class="relative z-10 w-11 h-11 rounded-full bg-[#16181b] text-zinc-500 border-2 border-[#2b3036] scale-95 flex items-center justify-center font-black text-sm transition-all duration-700 ease-in-out transform">
+                📍
+              </div>
+            </div>
+            <span id="step-title-4" class="text-xs font-medium text-zinc-500 transition-colors duration-500">Final Delivery</span>
+            <span id="step-time-4" class="text-[11px] text-zinc-500 font-mono-data mt-0.5">Sept 26</span>
+          </div>
+        </div>
+
+        <!-- Interactive Stepper Simulation Controls -->
+        <div class="mt-8 pt-5 border-t border-[#23272b] flex flex-wrap items-center justify-between gap-3">
+          <div class="flex items-center gap-2">
+            <svg class="w-4 h-4 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/></svg>
+            <span class="text-xs font-mono-data font-bold text-zinc-300 uppercase tracking-wider">
+              Simulate Status Progression:
+            </span>
+          </div>
+          <div class="flex flex-wrap items-center gap-2">
+            <button onclick="setResultStatus('in_transit')" id="sim-btn-transit" class="px-3 py-1.5 rounded-sm text-xs font-mono-data font-semibold transition-all flex items-center gap-1.5 bg-orange-500 text-black font-bold shadow-md shadow-orange-500/30 ring-1 ring-orange-400">
+              <span>✈ 1. In Air Transit</span>
+            </button>
+            <button onclick="setResultStatus('on_hold')" id="sim-btn-hold" class="px-3 py-1.5 rounded-sm text-xs font-mono-data font-semibold transition-all flex items-center gap-1.5 bg-[#181a1d] hover:bg-[#252a2f] text-zinc-300 border border-[#2b3036]">
+              <span>⚠ 2. Customs On-Hold</span>
+            </button>
+            <button onclick="setResultStatus('out_for_delivery')" id="sim-btn-delivery" class="px-3 py-1.5 rounded-sm text-xs font-mono-data font-semibold transition-all flex items-center gap-1.5 bg-[#181a1d] hover:bg-[#252a2f] text-zinc-300 border border-[#2b3036]">
+              <span>🚚 3. Out for Delivery</span>
+            </button>
+            <button onclick="setResultStatus('delivered')" id="sim-btn-delivered" class="px-3 py-1.5 rounded-sm text-xs font-mono-data font-semibold transition-all flex items-center gap-1.5 bg-[#181a1d] hover:bg-[#252a2f] text-zinc-300 border border-[#2b3036]">
+              <span>✓ 4. Delivered</span>
+            </button>
+            <button onclick="toggleAutoPlayStages()" id="sim-btn-auto" class="px-3 py-1.5 rounded-sm text-xs font-mono-data font-bold uppercase transition-all flex items-center gap-1.5 bg-zinc-800 hover:bg-zinc-700 text-zinc-200 border border-zinc-700">
+              <span id="auto-btn-label">▶ Auto-Play Stages</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Two-Column Operational Details -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      
+      <!-- Left Column: Flight Visual & Milestone Timeline (7 cols) -->
+      <div class="lg:col-span-7 space-y-6">
+
+        <!-- Active Transit Aircraft Spotlight Card with Generated Image -->
+        <div class="glass-card rounded-sm overflow-hidden">
+          <div class="relative h-56 sm:h-64 w-full bg-[#181a1d]">
+            <img 
+              src="/images/logistics_cargo_plane.jpg" 
+              alt="Apex Air Freight Cargo Plane in Transit" 
+              referrerpolicy="no-referrer"
+              class="w-full h-full object-cover object-center filter brightness-90"
+              onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');"
+            />
+            <div class="hidden absolute inset-0 bg-gradient-to-tr from-black via-zinc-900 to-orange-950 flex items-center justify-center p-6">
+              <div class="text-center">
+                <span class="text-orange-500 text-3xl font-mono-data">✈ APX-9481</span>
+                <p class="text-xs text-zinc-400 mt-2 font-mono-data">Transponder Flight Telemetry Active</p>
+              </div>
+            </div>
+            <!-- Overlay Scrim -->
+            <div class="absolute inset-0 bg-gradient-to-t from-[#141618] via-transparent to-black/40"></div>
+            
+            <div class="absolute bottom-4 left-4 right-4 flex items-center justify-between text-xs">
+              <div class="bg-black/80 backdrop-blur-md px-3 py-1.5 rounded border border-orange-500/40 text-orange-400 font-mono-data font-semibold">
+                Cruising Altitude: FL380 &middot; 890 km/h
+              </div>
+              <div class="bg-black/80 backdrop-blur-md px-3 py-1.5 rounded border border-zinc-700 text-zinc-300 font-mono-data">
+                ULD-APX-9941B (Secure)
+              </div>
+            </div>
+          </div>
+
+          <div class="p-6">
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 text-xs">
+              <div>
+                <span class="text-zinc-500 block uppercase font-semibold text-[10px]">Origin Gateway</span>
+                <span class="text-white font-bold text-sm block mt-0.5">Frankfurt, Germany</span>
+                <span class="text-zinc-400 font-mono-data text-[11px]">FRA / Hub Cargo Terminal 4</span>
+              </div>
+              <div>
+                <span class="text-zinc-500 block uppercase font-semibold text-[10px]">Destination Port</span>
+                <span class="text-white font-bold text-sm block mt-0.5">Cairo, Egypt</span>
+                <span class="text-zinc-400 font-mono-data text-[11px]">CAI / Air Cargo Village</span>
+              </div>
+              <div>
+                <span class="text-zinc-500 block uppercase font-semibold text-[10px]">Air Waybill Service</span>
+                <span class="text-orange-400 font-bold text-sm block mt-0.5 font-mono-data">Priority Express Air</span>
+                <span class="text-zinc-400 text-[11px]">Direct Transit Vector</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tracking Milestone Timeline -->
+        <div class="glass-card rounded-sm p-6">
+          <div class="flex items-center justify-between border-b border-[#23272b] pb-4 mb-6">
+            <h2 class="text-base font-bold text-white uppercase tracking-wider flex items-center gap-2">
+              <svg class="w-5 h-5 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              Milestone Audit Trail
+            </h2>
+            <span class="text-xs text-zinc-400 font-mono-data">UTC Timestamp Log</span>
+          </div>
+
+          <div class="relative border-l-2 border-orange-500/40 ml-3 space-y-6 text-xs">
+            <!-- Event 1: In Flight (Latest) -->
+            <div class="relative pl-6">
+              <span class="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-orange-500 ring-4 ring-[#141618] flex items-center justify-center">
+                <span class="w-1.5 h-1.5 bg-black rounded-full"></span>
+              </span>
+              <div class="flex flex-wrap items-center justify-between gap-1 mb-1">
+                <span class="font-bold text-white text-sm">In Air Transit &mdash; En Route</span>
+                <span class="text-orange-400 font-mono-data font-semibold">Today &middot; 07:15 UTC</span>
+              </div>
+              <div class="text-zinc-400 font-mono-data text-[11px] mb-1">Airspace Mediterranean Corridor &middot; Flight APX-9481</div>
+              <p class="text-zinc-300 leading-relaxed">
+                Aircraft cruising altitude FL380. Package secured in container ULD-APX-9941B. Radar telemetry healthy. Delivery scheduled as planned.
+              </p>
+            </div>
+
+            <!-- Event 2: Loaded Frankfurt -->
+            <div class="relative pl-6">
+              <span class="absolute -left-[7px] top-1 w-3 h-3 rounded-full bg-zinc-600 ring-4 ring-[#141618]"></span>
+              <div class="flex flex-wrap items-center justify-between gap-1 mb-1">
+                <span class="font-bold text-white text-sm">Loaded into Air Freight Container</span>
+                <span class="text-zinc-400 font-mono-data">Today &middot; 04:30 CET</span>
+              </div>
+              <div class="text-zinc-400 font-mono-data text-[11px] mb-1">Frankfurt Airport (FRA), Germany</div>
+              <p class="text-zinc-400 leading-relaxed">
+                Pallet scanned into air manifest APX-9481 by Ground Cargo Ops. Container locked and sealed.
+              </p>
+            </div>
+
+            <!-- Event 3: Export Customs Cleared -->
+            <div class="relative pl-6">
+              <span class="absolute -left-[7px] top-1 w-3 h-3 rounded-full bg-zinc-600 ring-4 ring-[#141618]"></span>
+              <div class="flex flex-wrap items-center justify-between gap-1 mb-1">
+                <span class="font-bold text-white text-sm">Export Customs Cleared</span>
+                <span class="text-zinc-400 font-mono-data">Sept 21 &middot; 21:40 CET</span>
+              </div>
+              <div class="text-zinc-400 font-mono-data text-[11px] mb-1">Frankfurt Cargo Gateway, Germany</div>
+              <p class="text-zinc-400 leading-relaxed">
+                Customs export declaration verified and approved. Commercial manifest signed by Officer FRA-CUST-12.
+              </p>
+            </div>
+
+            <!-- Event 4: Picked Up -->
+            <div class="relative pl-6">
+              <span class="absolute -left-[7px] top-1 w-3 h-3 rounded-full bg-zinc-600 ring-4 ring-[#141618]"></span>
+              <div class="flex flex-wrap items-center justify-between gap-1 mb-1">
+                <span class="font-bold text-white text-sm">Shipment Collected from Consignor</span>
+                <span class="text-zinc-400 font-mono-data">Sept 21 &middot; 14:15 CET</span>
+              </div>
+              <div class="text-zinc-400 font-mono-data text-[11px] mb-1">Technik Logistics Depot, Frankfurt</div>
+              <p class="text-zinc-400 leading-relaxed">
+                Consignment picked up by Apex courier unit. Barcode DELI01474 registered on global logistics network.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Consignment Specs, Waybill Details, Actions (5 cols) -->
+      <div class="lg:col-span-5 space-y-6">
+
+        <!-- Consignment Waybill Specifications -->
+        <div class="glass-card rounded-sm p-6 border-t-2 border-t-orange-500">
+          <div class="flex items-center justify-between border-b border-[#23272b] pb-4 mb-4">
+            <h3 class="text-sm font-bold text-white uppercase tracking-wider font-mono-data">Waybill Specifications</h3>
+            <span class="px-2 py-0.5 bg-orange-500/10 text-orange-400 rounded text-[10px] font-mono-data uppercase font-semibold">Priority Tier-1</span>
+          </div>
+
+          <dl class="divide-y divide-[#23272b] text-xs font-mono-data">
+            <div class="py-2.5 flex justify-between">
+              <dt class="text-zinc-400">Gross Weight:</dt>
+              <dd class="text-white font-semibold">4.85 kg (10.69 lbs)</dd>
+            </div>
+            <div class="py-2.5 flex justify-between">
+              <dt class="text-zinc-400">Dimensions:</dt>
+              <dd class="text-white font-semibold">34 &times; 22 &times; 15 cm</dd>
+            </div>
+            <div class="py-2.5 flex justify-between">
+              <dt class="text-zinc-400">Pieces / Colli:</dt>
+              <dd class="text-white font-semibold">1 Parcel</dd>
+            </div>
+            <div class="py-2.5 flex justify-between">
+              <dt class="text-zinc-400">Declared Value:</dt>
+              <dd class="text-orange-400 font-bold">$1,250.00 USD</dd>
+            </div>
+            <div class="py-2.5 flex justify-between">
+              <dt class="text-zinc-400">Signature Required:</dt>
+              <dd class="text-emerald-400 font-semibold">Yes (ID Verification)</dd>
+            </div>
+            <div class="py-2.5 flex justify-between">
+              <dt class="text-zinc-400">Cargo Insurance:</dt>
+              <dd class="text-white font-semibold">Full Comprehensive</dd>
+            </div>
+          </dl>
+
+          <!-- Sender & Recipient Blocks -->
+          <div class="mt-6 pt-4 border-t border-[#23272b] space-y-4">
+            <div class="bg-[#0e0f11] p-3 rounded-sm border border-[#23272b]">
+              <span class="text-[10px] text-zinc-500 uppercase font-bold tracking-wider block mb-1">Shipper (Consignor)</span>
+              <div class="text-xs font-bold text-white">Technik Precision GmbH</div>
+              <div class="text-[11px] text-zinc-400">Industriepark Ost 44, Frankfurt am Main, Germany</div>
+            </div>
+
+            <div class="bg-[#0e0f11] p-3 rounded-sm border border-[#23272b]">
+              <span class="text-[10px] text-orange-400 uppercase font-bold tracking-wider block mb-1">Consignee (Recipient)</span>
+              <div class="text-xs font-bold text-white">Joel Dan (Apex Priority Recipient)</div>
+              <div class="text-[11px] text-zinc-400">MetroTech Logistics Park, New Cairo &middot; Egypt</div>
+            </div>
+          </div>
+
+          <!-- Quick Action Buttons -->
+          <div class="mt-6 space-y-2 no-print">
+            <button onclick="shareTracking()" class="w-full py-2.5 bg-[#1b1e22] hover:bg-[#252a2f] text-white text-xs font-bold uppercase tracking-wider rounded-sm border border-[#2e3338] transition-colors flex items-center justify-center gap-2">
+              <svg class="w-4 h-4 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/></svg>
+              <span id="copy-btn-text">Copy Tracking Link</span>
+            </button>
+            <a href="track.html" class="w-full py-2.5 bg-orange-500 hover:bg-orange-400 text-black text-xs font-black uppercase tracking-wider rounded-sm transition-colors flex items-center justify-center gap-2">
+              Track Another Package
+            </a>
+          </div>
+        </div>
+
+        <!-- Demonstration Notice: Egypt Hold Reference -->
+        <div class="glass-card rounded-sm p-5 border-l-4 border-l-amber-500 no-print">
+          <div class="flex items-start gap-3">
+            <div class="w-8 h-8 rounded bg-amber-500/10 text-amber-400 flex items-center justify-center shrink-0 mt-0.5">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <div class="text-xs">
+              <h4 class="font-bold text-white uppercase tracking-wider">Egypt Customs Station</h4>
+              <p class="text-zinc-400 mt-1 leading-relaxed">
+                Access official Egyptian Customs Authority quarantine & holding clearance center:
+              </p>
+              <div class="mt-3 flex items-center gap-2">
+                <a href="/#on-hold?code=DELI08821" class="px-3 py-1.5 bg-black border border-amber-500/60 hover:border-amber-400 text-amber-300 font-semibold rounded font-mono-data text-[11px] transition-colors">
+                  View Egypt Customs Hold Portal &rarr;
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- FULL ACTIVITY LOG & AUDIT TRAIL COMPONENT -->
+    <section class="glass-card rounded-sm p-6 sm:p-8 mt-10 border-t-4 border-t-orange-500 relative overflow-hidden" id="full-activity-log-section">
+      <!-- Background Watermark -->
+      <div class="absolute -right-8 -bottom-8 opacity-5 pointer-events-none text-9xl font-black text-orange-500 font-mono-data select-none">
+        AUDIT
+      </div>
+
+      <!-- Header -->
+      <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-6 border-b border-[#23272b] relative z-10">
+        <div>
+          <div class="flex items-center gap-2 text-xs font-mono-data mb-2 text-zinc-400">
+            <span class="w-2 h-2 rounded-full bg-orange-500 animate-pulse"></span>
+            <span class="text-orange-400 font-bold tracking-wider">APEX AIRWAYS GLOBAL LEDGER</span>
+            <span>&middot;</span>
+            <span id="audit-manifest-code">MANIFEST #DELI01474</span>
+            <span>&middot;</span>
+            <span class="text-emerald-400 font-semibold flex items-center gap-1">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+              Cryptographic Audit Chain Active
+            </span>
+          </div>
+
+          <h3 class="text-2xl sm:text-3xl font-black text-white tracking-tight uppercase flex items-center gap-3">
+            <span>Full Activity Log</span>
+            <span class="text-xs px-2.5 py-1 bg-zinc-800 text-zinc-300 border border-zinc-700 rounded font-mono-data font-normal" id="audit-events-counter">
+              4 Events Recorded
+            </span>
+          </h3>
+          <p class="mt-1 text-xs sm:text-sm text-zinc-400 max-w-2xl leading-relaxed">
+            Immutable chronological record of all status changes, operational handovers, customs inspections, and the verified personnel who authorized each event.
+          </p>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-2.5 shrink-0">
+          <button onclick="refreshHtmlAuditLogs()" class="px-3.5 py-2 bg-[#1b1e22] hover:bg-[#252a2f] text-zinc-200 border border-[#2e3338] text-xs font-mono-data font-semibold rounded-sm transition-all flex items-center gap-2 cursor-pointer">
+            <svg class="w-3.5 h-3.5 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+            <span>Sync Log</span>
+          </button>
+          <button onclick="exportAuditJson()" class="px-3.5 py-2 bg-[#1b1e22] hover:bg-[#252a2f] text-zinc-200 border border-[#2e3338] text-xs font-mono-data font-semibold rounded-sm transition-all flex items-center gap-2 cursor-pointer">
+            <svg class="w-3.5 h-3.5 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+            <span>Export JSON</span>
+          </button>
+          <button onclick="window.print()" class="px-3.5 py-2 bg-[#1b1e22] hover:bg-[#252a2f] text-zinc-200 border border-[#2e3338] text-xs font-mono-data font-semibold rounded-sm transition-all flex items-center gap-2 cursor-pointer">
+            <svg class="w-3.5 h-3.5 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+            <span>Print Log</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- KPI Summary Cards -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3 my-6 text-xs font-mono-data">
+        <div class="bg-[#0e0f11] border border-[#23272b] p-3.5 rounded-sm">
+          <span class="text-[10px] text-zinc-500 uppercase tracking-widest block font-bold">Total Transitions</span>
+          <div class="text-xl font-black text-white mt-1" id="stat-total-transitions">4 Actions</div>
+          <span class="text-[11px] text-emerald-400 flex items-center gap-1 mt-0.5">
+            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            100% Verified Signatures
+          </span>
+        </div>
+
+        <div class="bg-[#0e0f11] border border-[#23272b] p-3.5 rounded-sm">
+          <span class="text-[10px] text-zinc-500 uppercase tracking-widest block font-bold">Latest Authorizer</span>
+          <div class="text-sm font-bold text-orange-400 mt-1 truncate" id="stat-latest-officer">
+            Markus Vance
+          </div>
+          <span class="text-[11px] text-zinc-400 truncate block mt-0.5" id="stat-latest-badge">
+            FRA-DISP-09
+          </span>
+        </div>
+
+        <div class="bg-[#0e0f11] border border-[#23272b] p-3.5 rounded-sm">
+          <span class="text-[10px] text-zinc-500 uppercase tracking-widest block font-bold">Operating Officers</span>
+          <div class="text-xl font-black text-white mt-1">3 Personnel</div>
+          <span class="text-[11px] text-zinc-400 mt-0.5 block truncate">Dispatch & Customs Ops</span>
+        </div>
+
+        <div class="bg-[#0e0f11] border border-[#23272b] p-3.5 rounded-sm">
+          <span class="text-[10px] text-zinc-500 uppercase tracking-widest block font-bold">Ledger Integrity</span>
+          <div class="text-sm font-bold text-emerald-400 mt-1 flex items-center gap-1.5">
+            <svg class="w-4 h-4 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+            <span>Tamper-Resistant</span>
+          </div>
+          <span class="text-[10px] text-zinc-500 font-mono-data mt-0.5 block truncate">SHA-256 HMAC Sealed</span>
+        </div>
+      </div>
+
+      <!-- Search & Filters -->
+      <div class="bg-[#0b0c0e] border border-[#23272b] p-3 rounded-sm mb-6 flex flex-col md:flex-row md:items-center justify-between gap-3 text-xs">
+        <div class="relative flex-1">
+          <input
+            type="text"
+            id="audit-search-input"
+            oninput="renderHtmlAuditLogs()"
+            placeholder="Search by Authorizing Officer, Badge, Location or Key..."
+            class="w-full bg-[#141618] border border-[#2b3036] rounded-sm pl-4 pr-3 py-2 text-white placeholder-zinc-500 font-mono-data text-xs focus:outline-none focus:border-orange-500"
+          />
+        </div>
+        <div class="flex flex-wrap items-center gap-1.5 font-mono-data text-[11px]">
+          <span class="text-zinc-500 uppercase mr-1">Filter:</span>
+          <button onclick="setHtmlAuditFilter('all')" id="audit-filter-all" class="px-2.5 py-1.5 rounded bg-orange-500 text-black font-bold">All Events</button>
+          <button onclick="setHtmlAuditFilter('in_transit')" id="audit-filter-transit" class="px-2.5 py-1.5 rounded bg-[#181a1d] text-zinc-400 hover:text-white">In Transit</button>
+          <button onclick="setHtmlAuditFilter('on_hold')" id="audit-filter-hold" class="px-2.5 py-1.5 rounded bg-[#181a1d] text-zinc-400 hover:text-white">Customs Hold</button>
+          <button onclick="setHtmlAuditFilter('out_for_delivery')" id="audit-filter-delivery" class="px-2.5 py-1.5 rounded bg-[#181a1d] text-zinc-400 hover:text-white">Delivery</button>
+        </div>
+      </div>
+
+      <!-- Audit Events Container -->
+      <div id="audit-events-list" class="space-y-4">
+        <!-- Rendered via JavaScript -->
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="w-full bg-[#0a0b0d] border-t border-[#23272b] py-8 px-4 sm:px-6 lg:px-8 text-xs text-zinc-500 no-print">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-orange-500"></span>
+        <span class="text-zinc-400 font-bold uppercase tracking-wider">APEX AIRWAYS GLOBAL FREIGHT</span>
+        <span>&middot;</span>
+        <span>Flight APX-9481 Transit Monitor</span>
+      </div>
+      <div class="text-zinc-500 font-mono-data">
+        System ID: FRA-CAI-2026
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function getQueryParam(param) {
+      // Check clean hash: #result?code=... or #code=... or direct #DELI01474
+      const hash = window.location.hash || '';
+      if (hash.includes('?')) {
+        const hashQuery = hash.split('?')[1];
+        const hashParams = new URLSearchParams(hashQuery);
+        if (hashParams.get(param)) return hashParams.get(param);
+      }
+      const match = hash.match(/#[/]?([A-Za-z0-9_-]+)/);
+      if (match && match[1] && !match[1].startsWith('?') && match[1] !== 'result' && match[1] !== 'track' && match[1] !== 'on-hold') {
+        return match[1];
+      }
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(param);
+    }
+
+    function shareTracking() {
+      const url = window.location.origin + '/#result?code=' + (getQueryParam('code') || 'DELI01474');
+      navigator.clipboard.writeText(url).then(() => {
+        const btnText = document.getElementById('copy-btn-text');
+        btnText.textContent = 'Link Copied!';
+        setTimeout(() => {
+          btnText.textContent = 'Copy Tracking Link';
+        }, 2000);
+      });
+    }
+
+    let autoPlayTimer = null;
+    const stagesList = ['in_transit', 'on_hold', 'out_for_delivery', 'delivered'];
+
+    function toggleAutoPlayStages() {
+      const autoBtnLabel = document.getElementById('auto-btn-label');
+      const autoBtn = document.getElementById('sim-btn-auto');
+      if (autoPlayTimer) {
+        clearInterval(autoPlayTimer);
+        autoPlayTimer = null;
+        if (autoBtnLabel) autoBtnLabel.textContent = '▶ Auto-Play Stages';
+        if (autoBtn) {
+          autoBtn.className = 'px-3 py-1.5 rounded-sm text-xs font-mono-data font-bold uppercase transition-all flex items-center gap-1.5 bg-zinc-800 hover:bg-zinc-700 text-zinc-200 border border-zinc-700';
+        }
+      } else {
+        if (autoBtnLabel) autoBtnLabel.textContent = '⏸ Pause Auto-Demo';
+        if (autoBtn) {
+          autoBtn.className = 'px-3 py-1.5 rounded-sm text-xs font-mono-data font-bold uppercase transition-all flex items-center gap-1.5 bg-red-500/20 text-red-400 border border-red-500/40 animate-pulse';
+        }
+        let curIdx = 0;
+        autoPlayTimer = setInterval(() => {
+          curIdx = (curIdx + 1) % stagesList.length;
+          setResultStatus(stagesList[curIdx], false);
+        }, 2400);
+      }
+    }
+
+    function setResultStatus(status, stopAuto = true) {
+      if (stopAuto && autoPlayTimer) {
+        toggleAutoPlayStages();
+      }
+
+      const badge = document.getElementById('stepper-status-badge');
+      const titleBanner = document.getElementById('status-main-heading');
+      const detailBanner = document.getElementById('status-detail-desc');
+      
+      const bar0 = document.getElementById('step-bar-0');
+      const bar1 = document.getElementById('step-bar-1');
+      const bar2 = document.getElementById('step-bar-2');
+      const bar3 = document.getElementById('step-bar-3');
+
+      const icon0 = document.getElementById('step-icon-0');
+      const icon1 = document.getElementById('step-icon-1');
+      const icon2 = document.getElementById('step-icon-2');
+      const icon3 = document.getElementById('step-icon-3');
+      const icon4 = document.getElementById('step-icon-4');
+
+      const title0 = document.getElementById('step-title-0');
+      const title1 = document.getElementById('step-title-1');
+      const title2 = document.getElementById('step-title-2');
+      const title3 = document.getElementById('step-title-3');
+      const title4 = document.getElementById('step-title-4');
+
+      // Update pill buttons active styling
+      ['transit', 'hold', 'delivery', 'delivered'].forEach(k => {
+        const btn = document.getElementById('sim-btn-' + k);
+        if (btn) {
+          btn.className = 'px-3 py-1.5 rounded-sm text-xs font-mono-data font-semibold transition-all flex items-center gap-1.5 bg-[#181a1d] hover:bg-[#252a2f] text-zinc-300 border border-[#2b3036]';
+        }
+      });
+
+      const completedClass = 'relative z-10 w-11 h-11 rounded-full bg-orange-500 text-black shadow-lg shadow-orange-500/35 scale-100 ring-2 ring-orange-400/50 flex items-center justify-center font-black text-sm transition-all duration-700 ease-in-out transform';
+      const pendingClass = 'relative z-10 w-11 h-11 rounded-full bg-[#16181b] text-zinc-500 border-2 border-[#2b3036] scale-95 flex items-center justify-center font-black text-sm transition-all duration-700 ease-in-out transform';
+      const activeClass = 'relative z-10 w-11 h-11 rounded-full bg-orange-500 text-black ring-4 ring-orange-500/50 shadow-xl shadow-orange-500/40 scale-110 flex items-center justify-center font-black text-sm transition-all duration-700 ease-in-out transform';
+      const holdClass = 'relative z-10 w-11 h-11 rounded-full bg-amber-500 text-black ring-4 ring-amber-500/50 shadow-xl shadow-amber-500/40 scale-110 flex items-center justify-center font-black text-sm transition-all duration-700 ease-in-out transform animate-pulse';
+
+      if (status === 'in_transit') {
+        const activeBtn = document.getElementById('sim-btn-transit');
+        if (activeBtn) activeBtn.className = 'px-3 py-1.5 rounded-sm text-xs font-mono-data font-semibold transition-all flex items-center gap-1.5 bg-orange-500 text-black font-bold shadow-md shadow-orange-500/30 ring-1 ring-orange-400';
+        if (badge) {
+          badge.textContent = 'IN TRANSIT';
+          badge.className = 'px-2 py-0.5 rounded text-[11px] font-bold uppercase bg-orange-500/20 text-orange-400 border border-orange-500/40 transition-colors duration-500';
+        }
+        if (bar0) bar0.style.width = '100%';
+        if (bar1) bar1.style.width = '100%';
+        if (bar2) bar2.style.width = '50%';
+        if (bar3) bar3.style.width = '0%';
+
+        if (icon0) { icon0.className = completedClass; icon0.innerHTML = '✓'; }
+        if (icon1) { icon1.className = completedClass; icon1.innerHTML = '✓'; }
+        if (icon2) { icon2.className = activeClass; icon2.innerHTML = '✈'; }
+        if (icon3) { icon3.className = pendingClass; icon3.innerHTML = '🚚'; }
+        if (icon4) { icon4.className = pendingClass; icon4.innerHTML = '📍'; }
+
+        if (title2) { title2.textContent = 'In Air Transit'; title2.className = 'text-xs font-black text-orange-400 transition-colors duration-500'; }
+        if (title3) { title3.textContent = 'Import Clearance'; title3.className = 'text-xs font-medium text-zinc-500 transition-colors duration-500'; }
+        if (title4) { title4.textContent = 'Final Delivery'; title4.className = 'text-xs font-medium text-zinc-500 transition-colors duration-500'; }
+      } else if (status === 'on_hold') {
+        const activeBtn = document.getElementById('sim-btn-hold');
+        if (activeBtn) activeBtn.className = 'px-3 py-1.5 rounded-sm text-xs font-mono-data font-semibold transition-all flex items-center gap-1.5 bg-amber-500 text-black font-bold shadow-md shadow-amber-500/30 ring-1 ring-amber-400';
+        if (badge) {
+          badge.textContent = 'CUSTOMS HOLD (EGYPT)';
+          badge.className = 'px-2 py-0.5 rounded text-[11px] font-bold uppercase bg-amber-500/20 text-amber-400 border border-amber-500/40 transition-colors duration-500';
+        }
+        if (bar0) bar0.style.width = '100%';
+        if (bar1) bar1.style.width = '100%';
+        if (bar2) bar2.style.width = '50%';
+        if (bar3) bar3.style.width = '0%';
+
+        if (icon0) { icon0.className = completedClass; icon0.innerHTML = '✓'; }
+        if (icon1) { icon1.className = completedClass; icon1.innerHTML = '✓'; }
+        if (icon2) { icon2.className = holdClass; icon2.innerHTML = '⚠'; }
+        if (icon3) { icon3.className = pendingClass; icon3.innerHTML = '📋'; }
+        if (icon4) { icon4.className = pendingClass; icon4.innerHTML = '📍'; }
+
+        if (title2) { title2.textContent = 'Customs Hold (Egypt)'; title2.className = 'text-xs font-black text-amber-400 transition-colors duration-500'; }
+        if (title3) { title3.textContent = 'Duty Release'; title3.className = 'text-xs font-medium text-zinc-500 transition-colors duration-500'; }
+      } else if (status === 'out_for_delivery') {
+        const activeBtn = document.getElementById('sim-btn-delivery');
+        if (activeBtn) activeBtn.className = 'px-3 py-1.5 rounded-sm text-xs font-mono-data font-semibold transition-all flex items-center gap-1.5 bg-orange-500 text-black font-bold shadow-md shadow-orange-500/30 ring-1 ring-orange-400';
+        if (badge) {
+          badge.textContent = 'OUT FOR DELIVERY';
+          badge.className = 'px-2 py-0.5 rounded text-[11px] font-bold uppercase bg-orange-500/20 text-orange-400 border border-orange-500/40 transition-colors duration-500';
+        }
+        if (bar0) bar0.style.width = '100%';
+        if (bar1) bar1.style.width = '100%';
+        if (bar2) bar2.style.width = '100%';
+        if (bar3) bar3.style.width = '50%';
+
+        if (icon0) { icon0.className = completedClass; icon0.innerHTML = '✓'; }
+        if (icon1) { icon1.className = completedClass; icon1.innerHTML = '✓'; }
+        if (icon2) { icon2.className = completedClass; icon2.innerHTML = '✓'; }
+        if (icon3) { icon3.className = activeClass; icon3.innerHTML = '🚚'; }
+        if (icon4) { icon4.className = pendingClass; icon4.innerHTML = '📍'; }
+
+        if (title2) { title2.textContent = 'Air Transit Cleared'; title2.className = 'text-xs font-bold text-white transition-colors duration-500'; }
+        if (title3) { title3.textContent = 'Out for Delivery'; title3.className = 'text-xs font-black text-orange-400 transition-colors duration-500'; }
+        if (title4) { title4.textContent = 'Final Delivery'; title4.className = 'text-xs font-medium text-zinc-500 transition-colors duration-500'; }
+      } else if (status === 'delivered') {
+        const activeBtn = document.getElementById('sim-btn-delivered');
+        if (activeBtn) activeBtn.className = 'px-3 py-1.5 rounded-sm text-xs font-mono-data font-semibold transition-all flex items-center gap-1.5 bg-emerald-500 text-black font-bold shadow-md shadow-emerald-500/30 ring-1 ring-emerald-400';
+        if (badge) {
+          badge.textContent = 'DELIVERED & SIGNED';
+          badge.className = 'px-2 py-0.5 rounded text-[11px] font-bold uppercase bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 transition-colors duration-500';
+        }
+        if (bar0) bar0.style.width = '100%';
+        if (bar1) bar1.style.width = '100%';
+        if (bar2) bar2.style.width = '100%';
+        if (bar3) bar3.style.width = '100%';
+
+        if (icon0) { icon0.className = completedClass; icon0.innerHTML = '✓'; }
+        if (icon1) { icon1.className = completedClass; icon1.innerHTML = '✓'; }
+        if (icon2) { icon2.className = completedClass; icon2.innerHTML = '✓'; }
+        if (icon3) { icon3.className = completedClass; icon3.innerHTML = '✓'; }
+        if (icon4) { icon4.className = 'relative z-10 w-11 h-11 rounded-full bg-emerald-500 text-black ring-4 ring-emerald-500/50 shadow-xl shadow-emerald-500/40 scale-110 flex items-center justify-center font-black text-sm transition-all duration-700 ease-in-out transform'; icon4.innerHTML = '✓'; }
+
+        if (title2) { title2.textContent = 'Air Transit Cleared'; title2.className = 'text-xs font-bold text-white transition-colors duration-500'; }
+        if (title3) { title3.textContent = 'Import Cleared'; title3.className = 'text-xs font-bold text-white transition-colors duration-500'; }
+        if (title4) { title4.textContent = 'Delivered & Signed'; title4.className = 'text-xs font-black text-emerald-400 transition-colors duration-500'; }
+      }
+
+      // Record status transition in the Full Activity Log
+      const code = getQueryParam('code') || 'DELI01474';
+      const prevEntry = currentAuditEntries[0];
+      const prevStatus = prevEntry ? prevEntry.newStatus : 'in_transit';
+
+      if (prevStatus !== status) {
+        let actionName = 'Air Freight Transit Progression Update';
+        let reason = 'Operational routing event triggered via carrier logistics terminal.';
+        let location = 'Cairo International Airport (CAI) Air Cargo Gateway';
+        let officer = {
+          name: 'Markus Vance',
+          role: 'dispatcher',
+          roleTitle: 'Senior Air Freight Dispatcher',
+          badge: 'FRA-DISP-09',
+          station: 'Frankfurt Central Hub (FRA-T4)',
+          department: 'Apex Global Logistics Air Operations',
+          keyUsed: 'APEX-DISPATCH-990',
+          email: 'm.vance@apex-freight.de',
+          avatarInitials: 'MV'
+        };
+
+        if (status === 'on_hold') {
+          actionName = 'Statutory Customs Retention Notice (Egypt ECA-41)';
+          reason = 'Consignment placed under official Customs retention protocol ECA-41 for tariff assessment.';
+          location = 'Cairo Terminal 2 Air Cargo Directorate (CAI-T2), Egypt';
+          officer = {
+            name: 'Officer Tariq Al-Farouk',
+            role: 'customs_officer',
+            roleTitle: 'Senior Customs Clearance Inspector',
+            badge: 'ECA-771',
+            station: 'Cairo Terminal 2 Air Cargo Directorate (CAI-T2)',
+            department: 'Egyptian Customs Authority (ECA) - Ministry of Finance',
+            keyUsed: 'EGY-CUST-AUTH-41',
+            email: 'clearance-cairo@apex-logistics.eg',
+            avatarInitials: 'TF'
+          };
+        } else if (status === 'out_for_delivery') {
+          actionName = 'Final Delivery Dispatch & Courier Vehicle Loading';
+          reason = 'Customs cleared and released. Package loaded aboard Apex Courier Van #42 for delivery.';
+          location = 'Apex Express Metro Depot, New Cairo Logistics Park, Egypt';
+          officer = {
+            name: 'Amira Hassan',
+            role: 'courier_agent',
+            roleTitle: 'Metro Cairo Express Courier Driver #42',
+            badge: 'CAI-DRV-42',
+            station: 'Apex Express Metro Depot (New Cairo)',
+            department: 'Last-Mile Delivery & Client Operations',
+            keyUsed: 'APEX-DISPATCH-990',
+            email: 'a.hassan@apex-logistics.eg',
+            avatarInitials: 'AH'
+          };
+        } else if (status === 'delivered') {
+          actionName = 'Consignment Delivery Sign-off & Biometric Proof';
+          reason = 'Package handed to consignee with signature verification confirmed at recipient address.';
+          location = 'Recipient Address / Apex Express Depot, New Cairo, Egypt';
+          officer = {
+            name: 'Hassan El-Sayed',
+            role: 'courier_agent',
+            roleTitle: 'Certified Cargo Delivery Sign-off Officer',
+            badge: 'CAI-CERT-88',
+            station: 'Apex Express Metro Depot (New Cairo)',
+            department: 'Consignee Verification & Signature Audit',
+            keyUsed: 'DEMO-KEY-2026',
+            email: 'h.elsayed@apex-logistics.eg',
+            avatarInitials: 'HE'
+          };
+        }
+
+        const now = new Date();
+        const newEntry = {
+          id: 'AUD-' + code + '-' + String(currentAuditEntries.length + 1).padStart(3, '0'),
+          parcelId: code,
+          timestamp: now.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) + ' · ' + now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }) + ' UTC',
+          previousStatus: prevStatus,
+          newStatus: status,
+          actionName: actionName,
+          reason: reason,
+          location: location,
+          authorizedBy: officer,
+          securityAudit: {
+            hash: 'SHA256:' + Math.random().toString(16).substring(2, 10) + Math.random().toString(16).substring(2, 10) + Math.random().toString(16).substring(2, 10),
+            terminalId: 'CAI-GW-T02',
+            ipAddress: '197.165.22.42',
+            protocol: 'APEX-TLSv1.3/AES-256'
+          }
+        };
+
+        currentAuditEntries.unshift(newEntry);
+        try {
+          const raw = localStorage.getItem('apex_audit_logs');
+          const db = raw ? JSON.parse(raw) : {};
+          db[code] = currentAuditEntries;
+          localStorage.setItem('apex_audit_logs', JSON.stringify(db));
+        } catch (e) {}
+        renderHtmlAuditLogs();
+      }
+    }
+
+    // Dynamic loading from local database or query param
+    document.addEventListener('DOMContentLoaded', () => {
+      const code = getQueryParam('code') || 'DELI01474';
+      document.getElementById('display-tracking-code').textContent = code;
+      document.getElementById('top-code-breadcrumb').textContent = code;
+      const manifestCodeEl = document.getElementById('audit-manifest-code');
+      if (manifestCodeEl) manifestCodeEl.textContent = 'MANIFEST #' + code;
+
+      try {
+        const stored = localStorage.getItem('apex_parcels_db');
+        if (stored) {
+          const db = JSON.parse(stored);
+          const p = db[code];
+          if (p && p.status === 'on_hold') {
+            // If this parcel was set to on_hold, offer quick redirect
+            window.location.href = `/#on-hold?code=${code}`;
+          }
+        }
+      } catch (e) {
+        console.error(e);
+      }
+
+      loadHtmlAuditLogs(code);
+    });
+
+    // --- FULL ACTIVITY LOG COMPONENT LOGIC FOR RESULT.HTML ---
+    let htmlAuditFilter = 'all';
+    let currentAuditEntries = [];
+
+    const defaultAuditData = {
+      DELI01474: [
+        {
+          id: 'AUD-DELI01474-001',
+          parcelId: 'DELI01474',
+          timestamp: 'Sep 21, 2026 · 14:15 CET',
+          previousStatus: 'created',
+          newStatus: 'in_transit',
+          actionName: 'Initial Consignment Acceptance & Security Scan',
+          reason: 'Consignment received from consignor Technik Precision GmbH. Dimensional tare weight (4.85kg) verified.',
+          location: 'Technik Logistics Depot, Frankfurt am Main, Germany',
+          authorizedBy: {
+            name: 'Markus Vance',
+            role: 'dispatcher',
+            roleTitle: 'Senior Air Freight Dispatcher',
+            badge: 'FRA-DISP-09',
+            station: 'Frankfurt Central Hub (FRA-T4)',
+            department: 'Apex Global Logistics Air Operations',
+            keyUsed: 'APEX-DISPATCH-990',
+            email: 'm.vance@apex-freight.de',
+            avatarInitials: 'MV'
+          },
+          securityAudit: {
+            hash: 'SHA256:7f4a9b2c3d1e8091a45f9208dcba716e9941a80c2f1e4d',
+            terminalId: 'FRA-DEPOT-T01',
+            ipAddress: '194.25.0.42',
+            protocol: 'APEX-TLSv1.3/AES-256'
+          }
+        },
+        {
+          id: 'AUD-DELI01474-002',
+          parcelId: 'DELI01474',
+          timestamp: 'Sep 21, 2026 · 21:40 CET',
+          previousStatus: 'in_transit',
+          newStatus: 'in_transit',
+          actionName: 'Export Customs Inspection Clearance (FRA)',
+          reason: 'European export declaration inspected under ATLAS e-Customs protocol with zero tariff discrepancies.',
+          location: 'Frankfurt Cargo Gateway Hub (FRA-T4), Germany',
+          authorizedBy: {
+            name: 'Officer Karl Brenner',
+            role: 'customs_officer',
+            roleTitle: 'Federal Customs Clearance Inspector',
+            badge: 'FRA-CUST-12',
+            station: 'Luftfracht-Zollamt Frankfurt am Main',
+            department: 'German Federal Customs Administration (Bundeszollverwaltung)',
+            keyUsed: 'EUR-CUST-AUTH-90',
+            email: 'k.brenner@zoll.de',
+            avatarInitials: 'KB'
+          },
+          securityAudit: {
+            hash: 'SHA256:1a84f32e90c88b71d49257e10b42918841a0e883921e0b',
+            terminalId: 'ZPO-FRA-08',
+            ipAddress: '194.25.0.88',
+            protocol: 'APEX-TLSv1.3/AES-256'
+          }
+        },
+        {
+          id: 'AUD-DELI01474-003',
+          parcelId: 'DELI01474',
+          timestamp: 'Sep 22, 2026 · 07:15 UTC',
+          previousStatus: 'in_transit',
+          newStatus: 'in_transit',
+          actionName: 'Air Freight Manifest Lodged & Runway Departure',
+          reason: 'Air cargo container Unit Load Device (ULD) #AKE-4912 sealed and loaded onto Boeing 777F flight APX-9481.',
+          location: 'Frankfurt Runway 07C / Flight APX-9481',
+          authorizedBy: {
+            name: 'Captain Elena Rostova',
+            role: 'supervisor',
+            roleTitle: 'Chief Air Cargo Flight Master',
+            badge: 'APX-AIR-882',
+            station: 'Apex Air Fleet Command Center',
+            department: 'Flight Avionics & In-Transit Air Safety',
+            keyUsed: 'DEMO-KEY-2026',
+            email: 'e.rostova@apex-flight.aero',
+            avatarInitials: 'ER'
+          },
+          securityAudit: {
+            hash: 'SHA256:9c82410aef5318dbca429019b78291402830fcae4719bb',
+            terminalId: 'AVIONICS-B777-49',
+            ipAddress: '10.240.12.8',
+            protocol: 'ICAO-ACARS-SECURE/TLS'
+          }
+        },
+        {
+          id: 'AUD-DELI01474-004',
+          parcelId: 'DELI01474',
+          timestamp: 'Sep 22, 2026 · 09:15 UTC+2',
+          previousStatus: 'in_transit',
+          newStatus: 'on_hold',
+          actionName: 'Cairo Cargo Terminal 2 Inbound Retention (Egypt)',
+          reason: 'Held at Cairo International Cargo Terminal 2 under Egyptian Customs Authority detention protocol ECA-41 pending commercial duty assessment.',
+          location: 'Cairo International Cargo Terminal 2, Inspection Bay B-4, Egypt',
+          authorizedBy: {
+            name: 'Officer Tariq Al-Farouk',
+            role: 'customs_officer',
+            roleTitle: 'Senior Customs Clearance Inspector',
+            badge: 'ECA-771',
+            station: 'Cairo Terminal 2 Air Cargo Directorate (CAI-T2)',
+            department: 'Egyptian Customs Authority (ECA) - Ministry of Finance',
+            keyUsed: 'EGY-CUST-AUTH-41',
+            email: 'clearance-cairo@apex-logistics.eg',
+            avatarInitials: 'TF'
+          },
+          securityAudit: {
+            hash: 'SHA256:d48291c0e39572ba61908234857bcae01948293847aefc',
+            terminalId: 'CAI-CUST-T2-BAY4',
+            ipAddress: '197.165.22.14',
+            protocol: 'ECA-ASYCUDA-SECURE/TLS'
+          }
+        }
+      ]
+    };
+
+    function loadHtmlAuditLogs(code) {
+      code = code || getQueryParam('code') || 'DELI01474';
+      try {
+        const raw = localStorage.getItem('apex_audit_logs');
+        if (raw) {
+          const parsed = JSON.parse(raw);
+          if (parsed && parsed[code] && parsed[code].length > 0) {
+            currentAuditEntries = parsed[code];
+            renderHtmlAuditLogs();
+            return;
+          }
+        }
+      } catch (e) {
+        console.warn('Error reading audit logs:', e);
+      }
+
+      currentAuditEntries = defaultAuditData[code] || defaultAuditData['DELI01474'];
+      renderHtmlAuditLogs();
+    }
+
+    function setHtmlAuditFilter(filter) {
+      htmlAuditFilter = filter;
+      const filters = ['all', 'transit', 'hold', 'delivery'];
+      const map = {
+        all: 'all',
+        in_transit: 'transit',
+        on_hold: 'hold',
+        out_for_delivery: 'delivery'
+      };
+
+      filters.forEach((f) => {
+        const btn = document.getElementById('audit-filter-' + f);
+        if (btn) {
+          if (f === (map[filter] || filter)) {
+            btn.className = 'px-2.5 py-1.5 rounded bg-orange-500 text-black font-bold';
+          } else {
+            btn.className = 'px-2.5 py-1.5 rounded bg-[#181a1d] text-zinc-400 hover:text-white';
+          }
+        }
+      });
+
+      renderHtmlAuditLogs();
+    }
+
+    function refreshHtmlAuditLogs() {
+      const code = getQueryParam('code') || 'DELI01474';
+      loadHtmlAuditLogs(code);
+      const counter = document.getElementById('audit-events-counter');
+      if (counter) {
+        const orig = counter.textContent;
+        counter.textContent = 'Syncing...';
+        setTimeout(() => {
+          renderHtmlAuditLogs();
+        }, 300);
+      }
+    }
+
+    function exportAuditJson() {
+      const code = getQueryParam('code') || 'DELI01474';
+      const report = {
+        manifest_code: code,
+        exported_at: new Date().toISOString(),
+        total_events: currentAuditEntries.length,
+        audit_integrity: 'SHA256_CRYPTOGRAPHICALLY_VERIFIED',
+        audit_trail: currentAuditEntries
+      };
+      const blob = new Blob([JSON.stringify(report, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `APEX_AUDIT_LOG_${code}_${Date.now()}.json`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+
+    function toggleAuditCardSpecs(id) {
+      const el = document.getElementById('specs-' + id);
+      if (el) {
+        el.classList.toggle('hidden');
+      }
+    }
+
+    function renderHtmlAuditLogs() {
+      const listEl = document.getElementById('audit-events-list');
+      if (!listEl) return;
+
+      const searchInput = document.getElementById('audit-search-input');
+      const query = searchInput ? searchInput.value.toLowerCase().trim() : '';
+
+      const filtered = currentAuditEntries.filter((entry) => {
+        if (htmlAuditFilter !== 'all' && entry.newStatus !== htmlAuditFilter) {
+          return false;
+        }
+        if (!query) return true;
+        const q = query;
+        const officer = entry.authorizedBy || {};
+        return (
+          entry.actionName.toLowerCase().includes(q) ||
+          entry.reason.toLowerCase().includes(q) ||
+          entry.location.toLowerCase().includes(q) ||
+          (officer.name && officer.name.toLowerCase().includes(q)) ||
+          (officer.badge && officer.badge.toLowerCase().includes(q)) ||
+          (officer.keyUsed && officer.keyUsed.toLowerCase().includes(q)) ||
+          (officer.station && officer.station.toLowerCase().includes(q)) ||
+          entry.id.toLowerCase().includes(q)
+        );
+      });
+
+      // Update KPI strip
+      const totalEl = document.getElementById('stat-total-transitions');
+      if (totalEl) totalEl.textContent = currentAuditEntries.length + ' Actions';
+
+      const counterEl = document.getElementById('audit-events-counter');
+      if (counterEl) counterEl.textContent = `${currentAuditEntries.length} Events Recorded`;
+
+      const latest = currentAuditEntries[0] || currentAuditEntries[currentAuditEntries.length - 1];
+      if (latest && latest.authorizedBy) {
+        const offEl = document.getElementById('stat-latest-officer');
+        if (offEl) offEl.textContent = latest.authorizedBy.name;
+        const badgeEl = document.getElementById('stat-latest-badge');
+        if (badgeEl) badgeEl.textContent = latest.authorizedBy.badge;
+      }
+
+      if (filtered.length === 0) {
+        listEl.innerHTML = `
+          <div class="text-center py-10 bg-[#0d0e10] border border-[#23272b] rounded-sm p-6">
+            <div class="text-sm font-bold text-white font-mono-data uppercase">No matching activity records</div>
+            <p class="text-xs text-zinc-400 mt-1">Adjust search filter or select 'All Events'.</p>
+          </div>
+        `;
+        return;
+      }
+
+      listEl.innerHTML = filtered.map((entry) => {
+        const officer = entry.authorizedBy || {
+          name: 'Authorized Dispatcher',
+          role: 'dispatcher',
+          roleTitle: 'Operations Agent',
+          badge: 'APX-990',
+          station: 'Central Hub',
+          department: 'Air Logistics',
+          keyUsed: 'APEX-DISPATCH-990',
+          email: 'ops@apex-logistics.com',
+          avatarInitials: 'AP'
+        };
+
+        const audit = entry.securityAudit || {
+          hash: 'SHA256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855',
+          terminalId: 'APX-TERM-01',
+          ipAddress: '194.25.0.1',
+          protocol: 'TLSv1.3/AES-256'
+        };
+
+        let badgeStyle = 'bg-orange-500/20 text-orange-400 border border-orange-500/40';
+        let roleStyle = 'bg-orange-950/70 border border-orange-600/60 text-orange-300';
+
+        if (entry.newStatus === 'on_hold') {
+          badgeStyle = 'bg-amber-500/20 text-amber-400 border border-amber-500/40';
+        } else if (entry.newStatus === 'delivered') {
+          badgeStyle = 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/40';
+        } else if (entry.newStatus === 'out_for_delivery') {
+          badgeStyle = 'bg-blue-500/20 text-blue-400 border border-blue-500/40';
+        }
+
+        if (officer.role === 'customs_officer') {
+          roleStyle = 'bg-amber-950/70 border border-amber-600/60 text-amber-300';
+        } else if (officer.role === 'supervisor') {
+          roleStyle = 'bg-purple-950/70 border border-purple-600/60 text-purple-300';
+        } else if (officer.role === 'courier_agent') {
+          roleStyle = 'bg-blue-950/70 border border-blue-600/60 text-blue-300';
+        }
+
+        return `
+          <div class="bg-[#0f1012] border border-[#23272b] hover:border-[#383d44] transition-all rounded-sm p-4 sm:p-5 relative group">
+            <!-- Header Row -->
+            <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3 mb-3">
+              <div class="flex flex-wrap items-center gap-2 text-xs">
+                <span class="font-mono-data text-orange-400 font-bold flex items-center gap-1.5">
+                  <svg class="w-3.5 h-3.5 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                  <span>${entry.timestamp}</span>
+                </span>
+                <span class="text-zinc-600">&middot;</span>
+                <div class="flex items-center gap-1.5 text-[11px] font-mono-data">
+                  <span class="text-zinc-500 uppercase">${(entry.previousStatus || 'created').replace('_', ' ')}</span>
+                  <span class="text-zinc-400">&rarr;</span>
+                  <span class="px-2 py-0.5 rounded font-bold uppercase ${badgeStyle}">
+                    ${(entry.newStatus || 'in_transit').replace('_', ' ')}
+                  </span>
+                </div>
+                <span class="text-zinc-600 hidden sm:inline">&middot;</span>
+                <span class="text-zinc-500 font-mono-data text-[11px] hidden sm:inline">${entry.id}</span>
+              </div>
+
+              <!-- Toggle Specs Button -->
+              <div class="flex items-center gap-2">
+                <button
+                  onclick="toggleAuditCardSpecs('${entry.id}')"
+                  class="text-xs font-mono-data text-zinc-400 hover:text-white flex items-center gap-1 px-2.5 py-1 bg-[#16181b] hover:bg-[#1e2226] border border-[#2b3036] rounded cursor-pointer transition-colors"
+                >
+                  <span>Security Specs</span>
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- Action Title & Reason -->
+            <div class="mb-4">
+              <h4 class="text-sm sm:text-base font-black text-white uppercase tracking-wide">
+                ${entry.actionName}
+              </h4>
+              <p class="text-xs sm:text-sm text-zinc-300 mt-1 leading-relaxed">
+                ${entry.reason}
+              </p>
+            </div>
+
+            <!-- AUTHORIZED BY CARD: Highlighted Dedicated Box -->
+            <div class="bg-[#141618] border border-[#282d33] rounded p-3.5 sm:p-4 grid grid-cols-1 md:grid-cols-12 gap-4 items-center">
+              <!-- Officer Profile -->
+              <div class="md:col-span-7 flex items-center gap-3.5">
+                <div class="w-10 h-10 sm:w-11 sm:h-11 rounded bg-gradient-to-br from-zinc-800 to-zinc-950 border border-orange-500/40 text-orange-400 font-bold font-mono-data flex items-center justify-center shrink-0 shadow-inner">
+                  ${officer.avatarInitials || 'AP'}
+                </div>
+
+                <div class="min-w-0">
+                  <div class="flex items-center gap-2 flex-wrap">
+                    <span class="text-[10px] uppercase font-mono-data tracking-widest text-zinc-400 font-semibold">
+                      Authorized Sign-Off:
+                    </span>
+                    <span class="text-xs sm:text-sm font-extrabold text-white">
+                      ${officer.name}
+                    </span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-mono-data font-bold uppercase tracking-wider ${roleStyle}">
+                      ${(officer.role || 'dispatcher').replace('_', ' ')}
+                    </span>
+                  </div>
+
+                  <div class="text-xs text-zinc-400 mt-0.5 truncate font-mono-data">
+                    <span>${officer.roleTitle || 'Authorized Officer'}</span>
+                    <span class="text-zinc-600 mx-1.5">&middot;</span>
+                    <span class="text-zinc-300 font-semibold">Badge #${officer.badge || 'N/A'}</span>
+                  </div>
+
+                  <div class="text-[11px] text-zinc-500 mt-0.5 truncate flex items-center gap-1 font-mono-data">
+                    <svg class="w-3 h-3 text-zinc-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                    <span class="truncate">${officer.station || entry.location}</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Key Used & Station Metadata -->
+              <div class="md:col-span-5 md:border-l md:border-[#23272b] md:pl-4 space-y-1 text-xs font-mono-data">
+                <div class="flex items-center justify-between">
+                  <span class="text-zinc-500 text-[11px] flex items-center gap-1">
+                    <svg class="w-3 h-3 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"/></svg>
+                    <span>Auth Token:</span>
+                  </span>
+                  <span class="text-orange-400 font-bold bg-black/60 px-1.5 py-0.5 rounded border border-orange-500/30 text-[11px]">
+                    ${officer.keyUsed || 'APEX-DISPATCH-990'}
+                  </span>
+                </div>
+
+                <div class="flex items-center justify-between">
+                  <span class="text-zinc-500 text-[11px]">Department:</span>
+                  <span class="text-zinc-300 truncate max-w-[170px]" title="${officer.department || ''}">
+                    ${officer.department || 'Apex Logistics Network'}
+                  </span>
+                </div>
+
+                <div class="flex items-center justify-between">
+                  <span class="text-zinc-500 text-[11px]">Contact:</span>
+                  <a href="mailto:${officer.email || ''}" class="text-zinc-400 hover:text-white truncate underline">
+                    ${officer.email || 'ops@apex-logistics.com'}
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Expandable Security Details Drawer -->
+            <div id="specs-${entry.id}" class="hidden mt-3 pt-3 border-t border-[#23272b] bg-[#0c0d0f] p-3 rounded text-xs font-mono-data space-y-2">
+              <div class="flex flex-wrap items-center justify-between gap-2 text-zinc-400">
+                <span class="flex items-center gap-1.5 text-emerald-400 font-semibold">
+                  <svg class="w-3.5 h-3.5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                  <span>Cryptographic Clearance Signature Verified</span>
+                </span>
+                <span class="text-zinc-500 text-[11px]">Protocol: ${audit.protocol}</span>
+              </div>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1 text-[11px]">
+                <div>
+                  <span class="text-zinc-500 block">SHA-256 Ledger Hash:</span>
+                  <span class="text-zinc-300 font-mono-data break-all select-all">${audit.hash}</span>
+                </div>
+                <div>
+                  <span class="text-zinc-500 block">Authorizing Terminal & IP:</span>
+                  <span class="text-zinc-300 font-mono-data">${audit.terminalId} &middot; IP ${audit.ipAddress}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+  </script>
+</body>
+</html>

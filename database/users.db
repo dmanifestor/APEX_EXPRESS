@@ -1,0 +1,101 @@
+-- Apex Logistics Database (database/users.db)
+-- SQLite Compatible Schema & Initial Seeds
+
+CREATE TABLE IF NOT EXISTS users (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    username TEXT UNIQUE NOT NULL,
+    full_name TEXT NOT NULL,
+    role TEXT NOT NULL, -- 'dispatcher', 'customs_officer', 'customer'
+    department TEXT NOT NULL,
+    access_token TEXT NOT NULL,
+    active_station TEXT NOT NULL,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS parcels (
+    parcel_id TEXT PRIMARY KEY,
+    tracking_code TEXT UNIQUE NOT NULL,
+    service_type TEXT NOT NULL,
+    status TEXT NOT NULL, -- 'in_transit', 'on_hold', 'out_for_delivery', 'delivered'
+    status_label TEXT NOT NULL,
+    origin_city TEXT NOT NULL,
+    origin_country TEXT NOT NULL,
+    destination_city TEXT NOT NULL,
+    destination_country TEXT NOT NULL,
+    current_location TEXT NOT NULL,
+    hold_location TEXT,
+    hold_reason TEXT,
+    hold_code TEXT,
+    sender_name TEXT NOT NULL,
+    recipient_name TEXT NOT NULL,
+    weight_kg REAL NOT NULL,
+    pieces INTEGER NOT NULL,
+    estimated_delivery TEXT NOT NULL,
+    last_updated DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS tracking_events (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    parcel_id TEXT NOT NULL,
+    timestamp TEXT NOT NULL,
+    location TEXT NOT NULL,
+    status TEXT NOT NULL,
+    description TEXT NOT NULL,
+    officer_id TEXT,
+    FOREIGN KEY(parcel_id) REFERENCES parcels(parcel_id)
+);
+
+-- Seed Authorized Users
+INSERT INTO users (username, full_name, role, department, access_token, active_station)
+VALUES 
+('dispatcher.mark', 'Markus Vance', 'dispatcher', 'Global Air Fleet Dispatch', 'APEX-DISPATCH-990', 'Frankfurt FRA Hub'),
+('customs.farouk', 'Tariq Al-Farouk', 'customs_officer', 'Egyptian Customs Authority (CAI)', 'EGY-CUST-AUTH-41', 'Cairo Terminal 2 Air Cargo'),
+('client.joel', 'Joel Dan', 'customer', 'Consignee - Priority Account', 'USER-TOKEN-DELI01474', 'Cairo Delivery Zone');
+
+-- Seed Core Parcels
+-- Parcel DELI01474: Status = "in_transit" ("Package is on its way")
+INSERT INTO parcels (
+    parcel_id, tracking_code, service_type, status, status_label,
+    origin_city, origin_country, destination_city, destination_country,
+    current_location, hold_location, hold_reason, hold_code,
+    sender_name, recipient_name, weight_kg, pieces, estimated_delivery
+) VALUES (
+    'DELI01474', 'DELI01474', 'Apex Priority Air Courier', 'in_transit', 'Package is on its way',
+    'Frankfurt', 'Germany', 'Cairo', 'Egypt',
+    'In Flight Transit - Apex Air Flight APX-9481 (FL380)', NULL, NULL, NULL,
+    'Precision Logistics GmbH (Frankfurt Gateway)', 'Joel Dan (Apex Priority Consignee)',
+    4.85, 1, '2026-09-26 18:30 EEST'
+);
+
+-- Parcel DELI08821 / EGYP99402: Status = "on_hold" ("Package is on hold in Egypt")
+INSERT INTO parcels (
+    parcel_id, tracking_code, service_type, status, status_label,
+    origin_city, origin_country, destination_city, destination_country,
+    current_location, hold_location, hold_reason, hold_code,
+    sender_name, recipient_name, weight_kg, pieces, estimated_delivery
+) VALUES (
+    'DELI08821', 'DELI08821', 'Apex Global Express Freight', 'on_hold', 'Package is on hold in Egypt',
+    'Rotterdam', 'Netherlands', 'Cairo', 'Egypt',
+    'Cairo International Cargo Terminal 2, Customs Inspection Bay B-4',
+    'Cairo International Airport Cargo Village, Egypt (CAI-T2)',
+    'Held for Mandatory Customs Tariff Assessment & Consignee Import Declaration (Form ECA-41)',
+    'EGY-GOV-CUST-883',
+    'Nordic Logistics BV', 'Joel Dan / Apex Client Recipient',
+    7.40, 2, 'Pending Customs Release (Held at Cairo Hub)'
+);
+
+-- Tracking History for DELI01474
+INSERT INTO tracking_events (parcel_id, timestamp, location, status, description, officer_id)
+VALUES
+('DELI01474', '2026-09-21 14:15 CET', 'Frankfurt Logistics Center, Germany', 'Collected', 'Shipment picked up from consignor and scanned into Apex network', 'AG-841'),
+('DELI01474', '2026-09-21 21:40 CET', 'Frankfurt International Airport Hub (FRA)', 'Export Customs Cleared', 'Export customs clearance processed and released for air outbound', 'FRA-CUST-12'),
+('DELI01474', '2026-09-22 04:30 CET', 'Frankfurt Cargo Tarmac (Gate F-18)', 'Loaded into Air Container', 'Consolidated into ULD Container APX-U992 aboard Flight APX-9481', 'RAMP-902'),
+('DELI01474', '2026-09-22 07:15 UTC', 'Airspace Mediterranean Corridor', 'In Flight Transit', 'En route to destination cargo facility. Package is on its way.', 'FLT-APX9481');
+
+-- Tracking History for DELI08821 (On-Hold in Egypt)
+INSERT INTO tracking_events (parcel_id, timestamp, location, status, description, officer_id)
+VALUES
+('DELI08821', '2026-09-20 11:20 CET', 'Rotterdam Central Depot, Netherlands', 'Collected', 'Shipment booked and processed for priority dispatch', 'NL-310'),
+('DELI08821', '2026-09-21 02:45 CET', 'Schiphol Airport Cargo, Amsterdam', 'Departed Hub', 'Dispatched on freight flight MS-782 to Cairo Airport', 'AMS-RAMP-04'),
+('DELI08821', '2026-09-21 18:30 UTC+2', 'Cairo International Airport (CAI), Egypt', 'Arrived at Inbound Hub', 'Unloaded at Terminal 2 Cargo Village; Transferred to customs area', 'CAI-OPS-19'),
+('DELI08821', '2026-09-22 09:15 UTC+2', 'Cairo Air Cargo Customs Inspection, Egypt', 'On Hold (Inspection)', 'Shipment held by Egyptian Customs Authority: Tariff verification & Form ECA-41 required', 'ECA-INSP-771');

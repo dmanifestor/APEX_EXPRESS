@@ -1,0 +1,311 @@
+{
+  "last_synced": "2026-09-22T20:10:00.000Z",
+  "parcels": {
+    "DELI01474": {
+      "parcel_id": "DELI01474",
+      "tracking_code": "DELI01474",
+      "service_type": "Apex Priority Global Air Express",
+      "status": "in_transit",
+      "status_label": "Package is on its way",
+      "status_detail": "Your parcel is currently in international air transit aboard flight APX-9481 and moving on schedule toward the delivery hub.",
+      "origin": {
+        "city": "Frankfurt",
+        "country": "Germany",
+        "facility": "Frankfurt Cargo Gateway Hub (FRA-T4)"
+      },
+      "destination": {
+        "city": "Cairo",
+        "country": "Egypt",
+        "address": "Apex Express Metro Depot, New Cairo Logistics Park",
+        "recipient": "Joel Dan (Apex Priority Recipient)"
+      },
+      "sender": {
+        "name": "Technik Precision GmbH",
+        "city": "Frankfurt am Main",
+        "country": "Germany"
+      },
+      "specs": {
+        "weight": "4.85 kg (10.69 lbs)",
+        "dimensions": "34 × 22 × 15 cm",
+        "pieces": 1,
+        "declared_value": "$1,250.00 USD",
+        "service_class": "Tier-1 Express Air Courier",
+        "signature_required": true,
+        "insurance": "Full Transit Cargo Protection",
+        "uld_container": "ULD-APX-9941B",
+        "carrier_flight": "APX-9481 (Frankfurt to Cairo)"
+      },
+      "estimated_delivery": {
+        "date": "September 26, 2026",
+        "time_window": "14:00 - 18:30 (Local Time)",
+        "countdown_hours": 94
+      },
+      "current_stage_index": 2,
+      "stages": [
+        {"title": "Shipment Picked Up", "completed": true, "timestamp": "Sept 21, 14:15 CET"},
+        {"title": "Export Customs Cleared", "completed": true, "timestamp": "Sept 21, 21:40 CET"},
+        {"title": "In International Transit", "current": true, "completed": false, "timestamp": "Sept 22, 07:15 UTC"},
+        {"title": "Customs Clearance & Arrival", "completed": false, "timestamp": "Estimated Sept 24"},
+        {"title": "Out for Final Delivery", "completed": false, "timestamp": "Estimated Sept 26"}
+      ],
+      "timeline": [
+        {
+          "date": "Sep 22, 2026",
+          "time": "07:15 UTC",
+          "location": "Airspace Transit Corridor - Flight APX-9481",
+          "status": "In Transit - Flying to Destination Hub",
+          "detail": "Aircraft cruising altitude FL380. Package secured in temperature-controlled cargo container ULD-APX-9941B. Transponder ping verified.",
+          "badge": "Active"
+        },
+        {
+          "date": "Sep 22, 2026",
+          "time": "04:30 CET",
+          "location": "Frankfurt Airport (FRA), Germany",
+          "status": "Loaded onto Outbound Aircraft",
+          "detail": "Pallet scanned into air manifest APX-9481 by Ground Cargo Ops.",
+          "badge": "Completed"
+        },
+        {
+          "date": "Sep 21, 2026",
+          "time": "21:40 CET",
+          "location": "Frankfurt Cargo Gateway, Germany",
+          "status": "Export Customs Cleared",
+          "detail": "Customs export inspection cleared. Document check verified without delays.",
+          "badge": "Completed"
+        },
+        {
+          "date": "Sep 21, 2026",
+          "time": "14:15 CET",
+          "location": "Technik Logistics Depot, Frankfurt, Germany",
+          "status": "Collected by Apex Courier",
+          "detail": "Consignment received from sender; barcodes registered in global network.",
+          "badge": "Completed"
+        }
+      ]
+    },
+    "DELI08821": {
+      "parcel_id": "DELI08821",
+      "tracking_code": "DELI08821",
+      "service_type": "Apex Global Express Freight",
+      "status": "on_hold",
+      "status_label": "Package is on hold in Egypt",
+      "status_detail": "Shipment is temporarily held at Cairo International Cargo Terminal 2 under Egyptian Customs Authority inspection protocol ECA-41.",
+      "origin": {
+        "city": "Rotterdam",
+        "country": "Netherlands",
+        "facility": "Rotterdam North Intermodal Port"
+      },
+      "destination": {
+        "city": "Cairo",
+        "country": "Egypt",
+        "address": "Apex Consignee Station, Heliopolis, Cairo",
+        "recipient": "Joel Dan / Priority Consignee"
+      },
+      "sender": {
+        "name": "Nordic Logistics BV",
+        "city": "Rotterdam",
+        "country": "Netherlands"
+      },
+      "hold_info": {
+        "location": "Cairo International Airport Air Cargo Terminal 2, Customs Inspection Bay B-4, Cairo, Egypt",
+        "hold_code": "EGY-GOV-CUST-883",
+        "authority": "Egyptian Customs Authority (ECA) - Air Cargo Import Directorate",
+        "reason": "Shipment detained for formal commercial tariff classification and importer identification validation (Form ECA-41).",
+        "hold_timestamp": "Sep 22, 2026 · 09:15 UTC+2",
+        "contact_officer": "Officer Tariq Al-Farouk (Badge #ECA-771)",
+        "contact_phone": "+20 2 2265 0000 (Ext 4120)",
+        "contact_email": "clearance-cairo@apex-logistics.eg",
+        "required_actions": [
+          "Provide commercial invoice detailing commodity HS codes",
+          "Consignee National ID / Tax Card registration copy",
+          "Customs clearance declaration acknowledgment (Form ECA-41)"
+        ],
+        "clearance_fee": "EGP 1,450 (~$30.00 USD)"
+      },
+      "specs": {
+        "weight": "7.40 kg (16.31 lbs)",
+        "dimensions": "48 × 30 × 24 cm",
+        "pieces": 2,
+        "declared_value": "$2,400.00 USD",
+        "service_class": "Heavy Commercial Express Freight",
+        "signature_required": true,
+        "insurance": "Secured Freight Transit Tier-2"
+      },
+      "estimated_delivery": {
+        "date": "Pending Clearance Release",
+        "time_window": "Upon Customs Release Protocol",
+        "countdown_hours": 0
+      },
+      "current_stage_index": 2,
+      "stages": [
+        {"title": "Shipment Picked Up", "completed": true, "timestamp": "Sept 20, 11:20 CET"},
+        {"title": "Departed Origin Hub", "completed": true, "timestamp": "Sept 21, 02:45 CET"},
+        {"title": "Held at Customs in Egypt", "current": true, "isHold": true, "completed": false, "timestamp": "Sept 22, 09:15 UTC+2"},
+        {"title": "Clearance Release", "completed": false, "timestamp": "Pending Action"},
+        {"title": "Delivered", "completed": false, "timestamp": "Awaiting Release"}
+      ],
+      "timeline": [
+        {
+          "date": "Sep 22, 2026",
+          "time": "09:15 UTC+2",
+          "location": "Cairo International Airport (CAI), Egypt",
+          "status": "Held by Egyptian Customs Authority",
+          "detail": "Package flagged during incoming scanner inspection. Notice issued: Mandatory import valuation and documentation review required.",
+          "badge": "On Hold"
+        },
+        {
+          "date": "Sep 21, 2026",
+          "time": "18:30 UTC+2",
+          "location": "Cairo International Airport (CAI), Egypt",
+          "status": "Arrived at Cairo Inbound Hub",
+          "detail": "Unloaded from flight MS-782 at Terminal 2 Cargo Village. Routed to customs bond area.",
+          "badge": "Arrived"
+        },
+        {
+          "date": "Sep 21, 2026",
+          "time": "02:45 CET",
+          "location": "Schiphol Cargo Airport, Amsterdam, Netherlands",
+          "status": "Departed International Gateway",
+          "detail": "Dispatched via scheduled cargo flight to Cairo International Airport.",
+          "badge": "Completed"
+        },
+        {
+          "date": "Sep 20, 2026",
+          "time": "11:20 CET",
+          "location": "Rotterdam Depot, Netherlands",
+          "status": "Shipment Picked Up",
+          "detail": "Freight accepted and scanned into transit network.",
+          "badge": "Completed"
+        }
+      ]
+    },
+    "EGYP99402": {
+      "parcel_id": "EGYP99402",
+      "tracking_code": "EGYP99402",
+      "service_type": "Apex Priority Cargo Transit",
+      "status": "on_hold",
+      "status_label": "Package is on hold in Egypt",
+      "status_detail": "Shipment is temporarily held at Cairo International Cargo Terminal 2 under Egyptian Customs Authority inspection protocol ECA-41.",
+      "origin": {
+        "city": "London",
+        "country": "United Kingdom",
+        "facility": "Heathrow Cargo Center (LHR)"
+      },
+      "destination": {
+        "city": "Cairo",
+        "country": "Egypt",
+        "address": "Apex Consignee Station, Zamalek, Cairo",
+        "recipient": "Joel Dan / Regional Delivery"
+      },
+      "sender": {
+        "name": "Thames Industrial Supply",
+        "city": "London",
+        "country": "UK"
+      },
+      "hold_info": {
+        "location": "Cairo International Airport Air Cargo Terminal 2, Customs Inspection Bay B-4, Cairo, Egypt",
+        "hold_code": "EGY-GOV-CUST-883",
+        "authority": "Egyptian Customs Authority (ECA) - Air Cargo Import Directorate",
+        "reason": "Shipment detained for formal commercial tariff classification and importer identification validation (Form ECA-41).",
+        "hold_timestamp": "Sep 22, 2026 · 09:15 UTC+2",
+        "contact_officer": "Officer Tariq Al-Farouk (Badge #ECA-771)",
+        "contact_phone": "+20 2 2265 0000 (Ext 4120)",
+        "contact_email": "clearance-cairo@apex-logistics.eg",
+        "required_actions": [
+          "Provide commercial invoice detailing commodity HS codes",
+          "Consignee National ID / Tax Card registration copy",
+          "Customs clearance declaration acknowledgment (Form ECA-41)"
+        ],
+        "clearance_fee": "EGP 1,450 (~$30.00 USD)"
+      },
+      "specs": {
+        "weight": "3.20 kg",
+        "dimensions": "28 × 18 × 12 cm",
+        "pieces": 1,
+        "declared_value": "$890.00 USD",
+        "service_class": "Express Priority Mail",
+        "signature_required": true,
+        "insurance": "Standard Cargo Protection"
+      },
+      "estimated_delivery": {
+        "date": "Pending Clearance Release",
+        "time_window": "Upon Customs Release Protocol",
+        "countdown_hours": 0
+      },
+      "current_stage_index": 2,
+      "stages": [
+        {"title": "Shipment Picked Up", "completed": true, "timestamp": "Sept 20, 09:00 GMT"},
+        {"title": "Departed London LHR", "completed": true, "timestamp": "Sept 20, 23:10 GMT"},
+        {"title": "Held at Customs in Egypt", "current": true, "isHold": true, "completed": false, "timestamp": "Sept 22, 09:15 UTC+2"},
+        {"title": "Clearance Release", "completed": false, "timestamp": "Pending Action"},
+        {"title": "Delivered", "completed": false, "timestamp": "Awaiting Release"}
+      ],
+      "timeline": [
+        {
+          "date": "Sep 22, 2026",
+          "time": "09:15 UTC+2",
+          "location": "Cairo International Airport (CAI), Egypt",
+          "status": "Held by Egyptian Customs Authority",
+          "detail": "Package flagged during incoming scanner inspection. Notice issued: Mandatory import valuation and documentation review required.",
+          "badge": "On Hold"
+        },
+        {
+          "date": "Sep 21, 2026",
+          "time": "19:00 UTC+2",
+          "location": "Cairo Airport Inbound Cargo, Egypt",
+          "status": "Arrived at Cairo Hub",
+          "detail": "Offloaded and scanned into customs holding bay.",
+          "badge": "Arrived"
+        }
+      ]
+    },
+    "DELI03190": {
+      "parcel_id": "DELI03190",
+      "tracking_code": "DELI03190",
+      "service_type": "Apex Standard Express",
+      "status": "out_for_delivery",
+      "status_label": "Out for delivery",
+      "status_detail": "Your package is with the local courier driver on van #42 and scheduled for delivery today.",
+      "origin": {"city": "Dubai", "country": "UAE", "facility": "DXB Air Cargo Hub"},
+      "destination": {"city": "Cairo", "country": "Egypt", "address": "Maadi, Degla Square, Cairo", "recipient": "Sarah M."},
+      "sender": {"name": "Emirates Trading LLC", "city": "Dubai", "country": "UAE"},
+      "specs": {"weight": "2.10 kg", "dimensions": "20 × 15 × 10 cm", "pieces": 1, "declared_value": "$320.00 USD", "service_class": "Standard Air", "signature_required": false, "insurance": "Basic"},
+      "estimated_delivery": {"date": "Today, Sept 22, 2026", "time_window": "Before 18:00", "countdown_hours": 3},
+      "current_stage_index": 3,
+      "stages": [
+        {"title": "Picked Up", "completed": true, "timestamp": "Sept 20"},
+        {"title": "In Transit", "completed": true, "timestamp": "Sept 21"},
+        {"title": "Customs Cleared", "completed": true, "timestamp": "Sept 22, 06:00"},
+        {"title": "Out for Delivery", "current": true, "completed": false, "timestamp": "Sept 22, 08:30"},
+        {"title": "Delivered", "completed": false, "timestamp": "Pending"}
+      ],
+      "timeline": [
+        {"date": "Sep 22, 2026", "time": "08:30 UTC+2", "location": "Cairo South Delivery Hub", "status": "Out for delivery with Courier", "detail": "Loaded onto courier van #42.", "badge": "Active"}
+      ]
+    },
+    "DELI05512": {
+      "parcel_id": "DELI05512",
+      "tracking_code": "DELI05512",
+      "service_type": "Apex Priority Courier",
+      "status": "delivered",
+      "status_label": "Delivered",
+      "status_detail": "Package successfully delivered and signed for.",
+      "origin": {"city": "Paris", "country": "France", "facility": "CDG Cargo Center"},
+      "destination": {"city": "Cairo", "country": "Egypt", "address": "Zamalek, Cairo", "recipient": "Karim N."},
+      "sender": {"name": "Atelier Mode", "city": "Paris", "country": "France"},
+      "specs": {"weight": "1.40 kg", "dimensions": "18 × 14 × 8 cm", "pieces": 1, "declared_value": "$580.00 USD", "service_class": "Express Document & Goods", "signature_required": true, "insurance": "Standard"},
+      "estimated_delivery": {"date": "Delivered on Sept 21, 2026", "time_window": "16:22 EEST", "countdown_hours": 0},
+      "current_stage_index": 4,
+      "stages": [
+        {"title": "Picked Up", "completed": true, "timestamp": "Sept 19"},
+        {"title": "In Transit", "completed": true, "timestamp": "Sept 20"},
+        {"title": "Customs Cleared", "completed": true, "timestamp": "Sept 21, 09:00"},
+        {"title": "Out for Delivery", "completed": true, "timestamp": "Sept 21, 13:00"},
+        {"title": "Delivered", "completed": true, "timestamp": "Sept 21, 16:22"}
+      ],
+      "timeline": [
+        {"date": "Sep 21, 2026", "time": "16:22 UTC+2", "location": "Zamalek, Cairo", "status": "Delivered & Signed", "detail": "Signed by recipient Karim N.", "badge": "Delivered"}
+      ]
+    }
+  }
+}

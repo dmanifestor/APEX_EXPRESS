@@ -1,0 +1,6 @@
+{
+  "name": "APEXEXPRESS",
+  "description": "High-precision package tracking web app with status routing, customs clearance management, and live parcel lookups in bold orange, white, and black.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
